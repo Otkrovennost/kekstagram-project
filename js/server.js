@@ -9,7 +9,7 @@
   var REQUEST_FAIL_MESS = 'Запрос не успел выполниться за ';
   var MILLISECONDS = 'мс';
   var URL_GET = 'https://js.dump.academy/kekstagram/data';
-  // var URL_POST = 'https://js.dump.academy/keksobooking';
+  var URL_POST = ' https://js.dump.academy/kekstagram';
   var elMain = document.querySelector('main');
   var elError;
   var elSuccess;
@@ -66,32 +66,32 @@
   // };
 
   window.server = {
-    // upload: function (data, onSuccess) {
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.responseType = 'json';
+    upload: function (data, onSuccess) {
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'json';
 
-    //   xhr.addEventListener('load', function () {
-    //     if (xhr.status === SUCCESS) {
-    //       onSuccess(xhr.response);
-    //       successHandler(SUCCESS_MESS);
-    //     } else {
-    //       errorHandler(STATUS_MESS + xhr.status + ' ' + xhr.statusText);
-    //     }
-    //   });
+      xhr.addEventListener('load', function () {
+        if (xhr.status === SUCCESS) {
+          onSuccess(xhr.response);
+          // successHandler(SUCCESS_MESS);
+        } else {
+          errorHandler(STATUS_MESS + xhr.status + ' ' + xhr.statusText);
+        }
+      });
 
-    //   xhr.addEventListener('error', function () {
-    //     errorHandler(CONNECT_FAIL_MESS);
-    //   });
+      xhr.addEventListener('error', function () {
+        errorHandler(CONNECT_FAIL_MESS);
+      });
 
-    //   xhr.open('POST', URL_POST);
-    //   xhr.timeout = SERVER_TIMEOUT;
+      xhr.open('POST', URL_POST);
+      xhr.timeout = SERVER_TIMEOUT;
 
-    //   xhr.addEventListener('timeout', function () {
-    //     errorHandler(REQUEST_FAIL_MESS + xhr.timeout + MILLISECONDS);
-    //   });
+      xhr.addEventListener('timeout', function () {
+        errorHandler(REQUEST_FAIL_MESS + xhr.timeout + MILLISECONDS);
+      });
 
-    //   xhr.send(data);
-    // },
+      xhr.send(data);
+    },
 
     load: function (onSuccess) {
       var xhr = new XMLHttpRequest();

@@ -73,6 +73,7 @@
   var effectPin = uploadForm.querySelector('.effect-level__pin');
   var effectLine = uploadForm.querySelector('.effect-level__depth');
   var effectLevelValue = uploadForm.querySelector('.effect-level__value');
+  var addNewPhoto = uploadForm.querySelector('.img-upload__submit');
   var photoUpload;
   var scaleControlNumber;
   var selectedFilter;
@@ -118,6 +119,7 @@
       });
 
       reader.readAsDataURL(file);
+      photoEffectsLevel.classList.add('hidden');
     }
   };
 
@@ -144,16 +146,14 @@
   var filtersCheckHandler = function (evt) {
     var target = evt.target;
     selectedFilter = effects[target.value];
+    photoEffectsLevel.classList.remove('hidden');
     updateEffectValue();
     photoUpload.style.filter = selectedFilter.effectName + selectedFilter.baseValue;
+    effectPin.addEventListener('mousedown', pinFiltersMovesHandler);
 
     if (selectedFilter.effectName === 'none') {
       photoEffectsLevel.classList.add('hidden');
-    } else {
-      photoEffectsLevel.classList.remove('hidden');
     }
-
-    effectPin.addEventListener('mousedown', pinFiltersMovesHandler);
   };
 
   var pinFiltersMovesHandler = function (evt) {
@@ -207,6 +207,10 @@
     effectLine.style.width = SCALE_BASE_POINTS;
   };
 
+  var resetFormHandler = function () {
+    resetForm();
+  };
+
   uploadFileInput.addEventListener('change', openOverlay);
 
   photoScaleBigger.addEventListener('click', scaleBiggerHandler);
@@ -216,4 +220,12 @@
   filtersList.addEventListener('change', filtersCheckHandler);
 
   uploadFileClosed.addEventListener('click', closeOverlay);
+
+  uploadForm.addEventListener('submit', function (evt) {
+    if (uploadForm.checkValidity()) {
+      evt.preventDefault();
+      window.server.upload(new FormData(uploadForm), resetFormHandler);
+    }
+  });
+
 })();
