@@ -3,6 +3,7 @@
 (function () {
   var photosList = [];
   var pictureElements = null;
+  var filtersBlock = document.querySelector('.img-filters');
 
   var setIndexForPhotosList = function () {
     photosList.forEach(function (photo) {
@@ -14,6 +15,7 @@
     photosList = data;
     setIndexForPhotosList();
     window.photo.getSimilarPicture(photosList);
+    filtersBlock.classList.remove('img-filters--inactive');
     addHandlerOnPicture();
   };
 
@@ -41,5 +43,9 @@
   };
 
   sendRequestForData();
+
+  window.main = {
+    photosList: photosList
+  };
 
 })();

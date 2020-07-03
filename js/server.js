@@ -8,8 +8,8 @@
   var CONNECT_FAIL_MESS = 'Произошла ошибка соединения';
   var REQUEST_FAIL_MESS = 'Запрос не успел выполниться за ';
   var MILLISECONDS = 'мс';
-  var URL_GET = 'https://js.dump.academy/kekstagram/data';
-  var URL_POST = ' https://js.dump.academy/kekstagram';
+  var URL_GET = 'https://javascript.pages.academy/kekstagram/data';
+  var URL_POST = 'https://javascript.pages.academy/kekstagram';
   var elMain = document.querySelector('main');
   var elError;
   var elSuccess;

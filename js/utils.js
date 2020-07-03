@@ -10,8 +10,13 @@
     }
   };
 
+  var getRandomNumber = function (minNumber, maxNumber) {
+    return Math.floor(Math.random() * (Math.floor(maxNumber) - Math.ceil(minNumber) + 1)) + Math.ceil(minNumber);
+  }
+
   window.utils = {
     stopCloseByEscHandler: stopCloseByEscHandler,
+    getRandomNumber: getRandomNumber,
     enterKeyCode: ENTER_KEYCODE,
     escKeyCode: ESC_KEYCODE
   };
